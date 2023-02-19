@@ -1,5 +1,10 @@
 import { initializeApp } from "firebase/app";
 
+import {
+  getFirestore ,
+  collection ,
+}from "firebase/firestore"
+
 const firebaseConfig = {
   apiKey: "AIzaSyAxBOxslDl1p8emkyQD5TOwI4Mj7-HFHSM",
   authDomain: "learn-firebase-with-ninja.firebaseapp.com",
@@ -11,3 +16,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+export const colRef = collection(db, "books");
