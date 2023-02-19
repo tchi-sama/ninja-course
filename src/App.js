@@ -1,36 +1,38 @@
-
 // ? realtime reading from firebase data base
 
-// import { colRef } from "./firebase";
-// import { onSnapshot } from "firebase/firestore";
-// import { useEffect } from "react";
+import { db } from "./firebase";
+import { 
+  doc,
+  onSnapshot,
+  getDoc 
+} from "firebase/firestore";
+import { useEffect } from "react";
+function App() {
+  useEffect(() => {
+    const docRef = doc(db, "books", "5xhwFm1zI2H9z1VM5lR0");
 
-// function App() {
-//   useEffect(() => {
+    const getData = getDoc(docRef).then((doc) => {
+      console.log({ ...doc.data(), id: doc.id });
+      console.log("data");
+    });
 
-//     const getData = onSnapshot(colRef, (snapshot) => {
-//       let books = [];
-//       snapshot.docs.forEach((doc) => {
-//         books.push({ ...doc.data(), id: doc.id });
-//       });
-//       console.log(books);
-//     });
+    const getRealTimeData = onSnapshot(docRef, (doc) => {
+      console.log({ ...doc.data(), id: doc.id });
+      console.log("realtime");
+    });
 
-//     return () => {
-//       getData();
-//     };
-//   }, []);
+    return () => {
+      getData();
+      getRealTimeData();
+    };
+  }, []);
 
-//   return <div className=""></div>;
-// }
+  return <div className=""></div>;
+}
 
-// export default App;
+export default App;
 
-
-
-
-
-// ? Firestore Queries 
+// ? Firestore Queries
 
 // import { colRef } from "./firebase";
 // import { onSnapshot , query , where ,orderBy  } from "firebase/firestore";
@@ -56,7 +58,7 @@
 
 // export default App;
 
-// import { 
+// import {
 //   serverTimestamp
 //   } from "firebase/firestore";
 
