@@ -1,13 +1,13 @@
-// ? realtime reading from firebase data base
+// ? Firestore Queries 
 
 import { colRef } from "./firebase";
-import { onSnapshot } from "firebase/firestore";
+import { onSnapshot , query , where  } from "firebase/firestore";
 import { useEffect } from "react";
 
 function App() {
   useEffect(() => {
-
-    const getData = onSnapshot(colRef, (snapshot) => {
+    const q = query (colRef, where("price",">",100))
+    const getData = onSnapshot(q, (snapshot) => {
       let books = [];
       snapshot.docs.forEach((doc) => {
         books.push({ ...doc.data(), id: doc.id });
@@ -24,6 +24,33 @@ function App() {
 }
 
 export default App;
+
+// ? realtime reading from firebase data base
+
+// import { colRef } from "./firebase";
+// import { onSnapshot } from "firebase/firestore";
+// import { useEffect } from "react";
+
+// function App() {
+//   useEffect(() => {
+
+//     const getData = onSnapshot(colRef, (snapshot) => {
+//       let books = [];
+//       snapshot.docs.forEach((doc) => {
+//         books.push({ ...doc.data(), id: doc.id });
+//       });
+//       console.log(books);
+//     });
+
+//     return () => {
+//       getData();
+//     };
+//   }, []);
+
+//   return <div className=""></div>;
+// }
+
+// export default App;
 
 // ? how to delete from firebase database
 
