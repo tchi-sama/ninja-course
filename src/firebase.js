@@ -7,6 +7,7 @@ const firebaseConfig = {
   storageBucket: "learn-firebase-with-ninja.appspot.com",
   messagingSenderId: "1034556543731",
   appId: "1:1034556543731:web:0ec7d1800d3f45b075dd86",
+  
 };
 
 const app = initializeApp(firebaseConfig);
