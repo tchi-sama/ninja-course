@@ -4,26 +4,22 @@ import { db } from "./firebase";
 import { 
   doc,
   onSnapshot,
-  getDoc 
+  getDoc, 
+  updateDoc
 } from "firebase/firestore";
+
 import { useEffect } from "react";
 function App() {
   useEffect(() => {
     const docRef = doc(db, "books", "5xhwFm1zI2H9z1VM5lR0");
 
-    const getData = getDoc(docRef).then((doc) => {
-      console.log({ ...doc.data(), id: doc.id });
-      console.log("data");
-    });
-
-    const getRealTimeData = onSnapshot(docRef, (doc) => {
-      console.log({ ...doc.data(), id: doc.id });
-      console.log("realtime");
+    const updateDocfn = updateDoc(docRef, {
+      title:"fuck yeah!",
+      name:"tchisama"
     });
 
     return () => {
-      getData();
-      getRealTimeData();
+      updateDocfn();
     };
   }, []);
 
@@ -31,6 +27,39 @@ function App() {
 }
 
 export default App;
+
+ // ? realtime reading from firebase data base
+// import { db } from "./firebase";
+// import { 
+//   doc,
+//   onSnapshot,
+//   getDoc 
+// } from "firebase/firestore";
+// import { useEffect } from "react";
+// function App() {
+//   useEffect(() => {
+//     const docRef = doc(db, "books", "5xhwFm1zI2H9z1VM5lR0");
+
+//     const getData = getDoc(docRef).then((doc) => {
+//       console.log({ ...doc.data(), id: doc.id });
+//       console.log("data");
+//     });
+
+//     const getRealTimeData = onSnapshot(docRef, (doc) => {
+//       console.log({ ...doc.data(), id: doc.id });
+//       console.log("realtime");
+//     });
+
+//     return () => {
+//       getData();
+//       getRealTimeData();
+//     };
+//   }, []);
+
+//   return <div className=""></div>;
+// }
+
+// export default App;
 
 // ? Firestore Queries
 
