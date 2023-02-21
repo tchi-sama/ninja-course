@@ -28,9 +28,9 @@ createUserWithEmailAndPassword(auth, "hello@gmail.com", "123456").then(
 );
 
 
-import { signInWithEmailAndPassword } from "firebase/auth";
+// import { signInWithEmailAndPassword } from "firebase/auth";
 
-signInWithEmailAndPassword(auth, "hi@gmail.com", "123456")
-.then((res) => {
-  console.log(res.user)
-});
+// signInWithEmailAndPassword(auth, "hi@gmail.com", "123456")
+// .then((res) => {
+//   console.log(res.user)
+// });
